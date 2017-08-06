@@ -18,7 +18,6 @@ import com.example.davidwillo.youwo.network.model.Homework;
 import com.example.davidwillo.youwo.study.CourseDB;
 import com.example.davidwillo.youwo.study.HomeworkDB;
 import com.example.davidwillo.youwo.util.MessageEvent;
-import com.example.davidwillo.youwo.util.MessageEvent2;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;

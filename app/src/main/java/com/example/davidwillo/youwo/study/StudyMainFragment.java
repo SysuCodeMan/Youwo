@@ -28,7 +28,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +40,6 @@ import com.example.davidwillo.youwo.network.NetworkException;
 import com.example.davidwillo.youwo.network.NetworkUtil;
 import com.example.davidwillo.youwo.network.SyncHelper;
 import com.example.davidwillo.youwo.network.model.Course;
-import com.example.davidwillo.youwo.util.MessageEvent2;
 import com.example.davidwillo.youwo.util.MyImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
@@ -74,20 +72,17 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
     DrawerLayout drawerLayout = null;
     View fragment;
 
-
-
-
     public static final String PREFERENCE_NAME = "settings";
     private static final int UpdateTimetable = 1;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
 
-    private TextView timetable_title, timetable_hint;
-    private GridView timetable_gridview;
+    private TextView timetableTitle, timetableHint;
+    private GridView timetableGridview;
     private CookieManager cookieManager;
-    private String username;
-    private String getURL = "";
+    private String username = null;
+    private String getURL = null;
     private TimetableAdapter timetableAdapter;
 
     NavigationView navigationView;
@@ -98,8 +93,8 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
             super.handleMessage(msg);
             switch (msg.what) {
                 case UpdateTimetable:
-                    timetable_hint.setVisibility(View.GONE);
-                    timetable_gridview.setVisibility(View.VISIBLE);
+                    timetableHint.setVisibility(View.GONE);
+                    timetableGridview.setVisibility(View.VISIBLE);
                     ArrayList<Course> courses = (ArrayList<Course>) msg.obj;
                     timetableAdapter.UpdateTimeTable(courses);
             }
@@ -131,7 +126,6 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
           fragment = inflater.inflate(R.layout.study_main_fragment, container, false);
           drawerLayout = (DrawerLayout)fragment.findViewById(R.id.drawer_study_layout);
           drawerLayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -150,10 +144,10 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
         cookieManager = CookieManager.getInstance();
         timetableAdapter = new TimetableAdapter(getContext(), username);
         findView();
-        timetable_gridview.setAdapter(timetableAdapter);
+        timetableGridview.setAdapter(timetableAdapter);
 
         scrolllock = false;
-        timetable_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        timetableGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (scrolllock == false) {
@@ -171,7 +165,7 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
                 }
             }
         });
-        timetable_gridview.setFastScrollEnabled(false);
+        timetableGridview.setFastScrollEnabled(false);
 
 
 
@@ -276,7 +270,7 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
                         break;
                 }
                 getURL += queryTerm;
-                timetable_title.setText(selectedYear + "学年 " + selectedTerm);
+                timetableTitle.setText(selectedYear + "学年 " + selectedTerm);
                 System.out.println("URL:" + getURL);
                 RequestData(getURL);
             }
@@ -293,8 +287,6 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
         System.out.println(currentYear);
         int now;
         now = Integer.parseInt(currentYear);
-        ;
-        ;
         for (int i = 0; i < 4; i++) {
             years[i] = Integer.toString(now) + "-" + Integer.toString(now + 1);
             now--;
@@ -312,8 +304,8 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
     }
 
     private void RequestData(final String getURL) {
-        timetable_gridview.setVisibility(View.INVISIBLE);
-        timetable_hint.setVisibility(View.VISIBLE);
+        timetableGridview.setVisibility(View.INVISIBLE);
+        timetableHint.setVisibility(View.VISIBLE);
         final String cookie = cookieManager.getCookie("http://wjw.sysu.edu.cn/");
         new Thread() {
             @Override
@@ -368,8 +360,6 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
                         courses.get(num + nextRow * 8).setLength(length);
                         courses.get(num + nextRow * 8).setMyindex(8 * i + index);
                         courses.get(num + nextRow * 8).setPlace(nextRow);
-                        System.out.println(courses.get(num + nextRow * 8).getName());
-                        System.out.println(courses.get(num + nextRow * 8).getPlace());
                     }
                     String[] details = course.get(j).html().split("<br>");
                     Course targetCourse = courses.get(num);
@@ -425,12 +415,6 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
         } else {
             return cookie.contains("sno");
         }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onDownloadEvent(MessageEvent2 messageEvent){
-        timetableAdapter = new TimetableAdapter(getContext(), MyApplication.getInstance().getUsername());
-        timetable_gridview.setAdapter(timetableAdapter);
     }
 
     private void showChangePassword(){
@@ -509,8 +493,8 @@ public class StudyMainFragment extends Fragment implements NavigationView.OnNavi
     }
 
     private void findView() {
-        timetable_title = (TextView)fragment.findViewById(R.id.timetable_title);
-        timetable_hint = (TextView)fragment.findViewById(R.id.timetable_hint);
-        timetable_gridview = (GridView)fragment.findViewById(R.id.timetable_gridview);
+        timetableTitle = (TextView)fragment.findViewById(R.id.timetable_title);
+        timetableHint = (TextView)fragment.findViewById(R.id.timetable_hint);
+        timetableGridview = (GridView)fragment.findViewById(R.id.timetable_gridview);
     }
 }
