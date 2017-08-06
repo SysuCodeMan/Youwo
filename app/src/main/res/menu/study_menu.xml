@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/check_course_table"
+            android:icon="@drawable/ic_date_range_white_48dp"
+            android:title="查询课表" />
+        <item
+            android:id="@+id/check_score"
+            android:icon="@drawable/ic_edit_white_48dp"
+            android:title="查询成绩" />
+
+        <item
+            android:id="@+id/password_change"
+            android:icon="@drawable/ic_vpn_key_white_24dp"
+            android:title="修改密码" />
+        <item
+            android:id="@+id/log_out"
+            android:icon="@drawable/ic_exit_to_app_white_24dp"
+            android:title="退出登录" />
+        <item
+            android:id="@+id/sync_study"
+            android:icon="@drawable/ic_cloud_white_48dp"
+            android:title="同步云端"/>
+    </group>
+
+
+
+</menu>

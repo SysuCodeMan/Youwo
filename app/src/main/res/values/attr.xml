@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyRoundProgress">
+        <attr name="radius" format="integer"/>
+        <attr name="circleBackground" format="color"/>
+        <attr name="ringColor" format="color"/>
+        <attr name="textColor" format = "color"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomShapeImageView">
+        <attr name="shape" format="integer">
+            <enum name="circle" value="1" />
+            <enum name="rectangle" value="2" />
+            <enum name="arc" value="3" />
+        </attr>
+        <attr name="imageBorderWidth" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="roundRadius" format="dimension" />
+        <attr name="leftTopRadius" format="dimension" />
+        <attr name="rightTopRadius" format="dimension" />
+        <attr name="rightBottomRadius" format="dimension" />
+        <attr name="leftBottomRadius" format="dimension" />
+        <attr name="onlyDrawBorder" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LineChar">
+        <attr  name="xylinecolor" format="color"/><!-- xy坐标轴颜色 -->
+        <attr  name="xylinewidth" format="dimension"/><!-- xy坐标轴宽度 -->
+        <attr  name="xytextcolor" format="color"/><!-- xy坐标轴文字颜色 -->
+        <attr name="xytextsize" format="dimension"/><!-- xy坐标轴文字大小 -->
+        <attr name="linecolor" format="color"/><!-- 折线图中折线的颜色 -->
+        <attr name="interval" format="dimension"/><!-- x轴各个坐标点水平间距 -->
+        <attr name="bgcolor" format="color"/><!-- 背景颜色 -->
+        <attr name="yfactor" format="dimension"/><!-- y轴高度系数 -->
+    </declare-styleable>
+</resources>

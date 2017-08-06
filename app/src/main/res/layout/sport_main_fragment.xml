@@ -1,0 +1,187 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    tools:openDrawer="start">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/sport_part1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkBlue"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp">
+
+                    <ImageButton
+                        android:id="@+id/iconCD"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/fix"
+                        android:background="@color/lightBlue"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="centerInside"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/picNtemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true">
+                    <ImageView
+                        android:id="@+id/weather_pic"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@mipmap/cloudy"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/cityName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#FFFFFF"
+                            android:textSize="23sp"
+                            android:text="广州"
+                            />
+                        <TextView
+                            android:id="@+id/temperature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textColor="#FFFFFF"
+                            android:text="17℃"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/airNwind"
+                    android:layout_below="@+id/picNtemp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_centerHorizontal="true"
+                    >
+                    <TextView
+                        android:id="@+id/airQuality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="20dp"
+                        android:text="空气质量：良"/>
+                    <TextView
+                        android:id="@+id/windLev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:text="西北风 3级"
+                        android:layout_marginLeft="19dp"
+                        />
+                </LinearLayout>
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true">
+
+
+                <ImageView
+                    android:id="@+id/compass"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/compass_newest"/>
+
+                <ImageView
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:src="@mipmap/compass_line"
+                    android:layout_centerInParent="true"
+                    android:layout_alignLeft="@+id/compass"/>
+
+                <TextView
+                    android:id="@+id/compassDegree"
+                    android:text="SE151°"
+                    android:textSize="30sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="-28dp"
+                    android:paddingLeft="10sp"
+                    android:layout_above="@id/compass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <com.example.davidwillo.youwo.util.MyRoundProgress
+                    android:id="@+id/roundProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:radius="250"
+                    app:circleBackground="@color/lightBlue"
+                    app:ringColor="@color/blue"
+
+                    android:layout_centerInParent="true"
+                    >
+                </com.example.davidwillo.youwo.util.MyRoundProgress>
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/stepET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="30sp"
+                    android:layout_centerInParent="true"
+                    android:text="10000"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view_sport"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/sport_menu" />
+
+</android.support.v4.widget.DrawerLayout>
+

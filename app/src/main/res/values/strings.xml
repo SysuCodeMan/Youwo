@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Youwo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--登录界面字符串-->
+    <string name="login_page_pic_description">logo</string>
+    <string name="login_page_title">有我就够了</string>
+    <string name="login_page_username_input">用户名</string>
+    <string name="login_page_password_input">密码</string>
+    <string name="login_page_login_button">登录</string>
+    <string name="login_page_register_button">注册</string>
+
+    <string-array name="spinnerArray">
+        <item>第一学期</item>
+        <item>第二学期</item>
+        <item>第三学期</item>
+        <item>所有</item>
+    </string-array>
+
+    <string-array name="timetable_select_term">
+        <item>第一学期</item>
+        <item>第二学期</item>
+        <item>第三学期</item>
+    </string-array>
+
+</resources>
